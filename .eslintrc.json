@@ -33,17 +33,17 @@
     "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-unused-vars": [
-      2,
-      { "argsIgnorePattern": "^_" }
+    "@typescript-eslint/no-unused-vars": [2, { "argsIgnorePattern": "^_" }],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "never",
+        "functions": "never"
+      }
     ],
-    "comma-dangle": ["error", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "always-multiline",
-      "exports": "never",
-      "functions": "never"
-    }],
     "padded-blocks": 0,
     "no-use-before-define": 0,
     "react/prop-types": 0,
