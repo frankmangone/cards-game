@@ -4,10 +4,16 @@ import { Animated, Easing, PanResponder } from 'react-native'
 const ANIMATION_DURATION = 200 // ms
 
 const useSwipeableCard = () => {
-  const dragPosition = useRef(new Animated.Value(0))
-  const leftPosition = dragPosition?.current.interpolate({
+  const dragValue = useRef(new Animated.Value(0))
+
+  const leftPosition = dragValue?.current.interpolate({
     inputRange: [-1000, 1000],
     outputRange: [-1000, 1000],
+  })
+
+  const rotation = dragValue?.current.interpolate({
+    inputRange: [-1000, 1000],
+    outputRange: [-2, 2],
   })
 
   const dragPanResponder = useRef(
@@ -15,10 +21,10 @@ const useSwipeableCard = () => {
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (_event, _gestureState) => {
         const { dx } = _gestureState
-        dragPosition.current.setValue(dx)
+        dragValue.current.setValue(dx)
       },
       onPanResponderRelease: (_event, _gestureState) => {
-        Animated.timing(dragPosition.current, {
+        Animated.timing(dragValue.current, {
           toValue: 0,
           duration: ANIMATION_DURATION, // ms
           useNativeDriver: false,
@@ -29,7 +35,7 @@ const useSwipeableCard = () => {
     })
   ).current
 
-  return { panHandlers: dragPanResponder.panHandlers, leftPosition }
+  return { panHandlers: dragPanResponder.panHandlers, leftPosition, rotation }
 }
 
 export default useSwipeableCard

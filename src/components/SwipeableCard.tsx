@@ -17,10 +17,13 @@ const Text = styled.Text`
 `
 
 const SwipeableCard: VFC = () => {
-  const { leftPosition, panHandlers } = useSwipeableCard()
+  const { leftPosition, rotation, panHandlers } = useSwipeableCard()
 
   return (
-    <Wrapper style={{ marginLeft: leftPosition }} {...panHandlers}>
+    <Wrapper
+      style={{ marginLeft: leftPosition, transform: [{ rotate: rotation }] }}
+      {...panHandlers}
+    >
       <Text>Test character name</Text>
     </Wrapper>
   )
