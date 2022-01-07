@@ -30,6 +30,17 @@ const useSwipeableCard = (options: HookOptions): ReturnValue => {
     outputRange: [-2, 2],
   })
 
+  const animateToValue = (value: number, callback?: () => void) => {
+    Animated.timing(dragValue.current, {
+      toValue: value,
+      duration: ANIMATION_DURATION, // ms
+      useNativeDriver: false,
+      easing: Easing.out(Easing.ease),
+    }).start(() => {
+      callback?.()
+    })
+  }
+
   const dragPanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -39,21 +50,16 @@ const useSwipeableCard = (options: HookOptions): ReturnValue => {
       },
       onPanResponderRelease: (_event, gestureState) => {
         if (gestureState.dx > 100) {
-          console.log('guess')
+          animateToValue(1000)
           return
         }
 
         if (gestureState.dx < 100) {
-          console.log('pass')
+          animateToValue(-1000)
           return
         }
 
-        Animated.timing(dragValue.current, {
-          toValue: 0,
-          duration: ANIMATION_DURATION, // ms
-          useNativeDriver: false,
-          easing: Easing.out(Easing.ease),
-        }).start()
+        animateToValue(0)
       },
       onPanResponderTerminationRequest: () => false,
     })
