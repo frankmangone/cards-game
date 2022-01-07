@@ -2,8 +2,8 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "types": ["styled-components-react-native"],
-    "typeRoots": ["./@types"],
+    "noImplicitAny": false,
+    "typeRoots": ["./@types", "./node_modules/@types"],
     "baseUrl": ".",
     "paths": {
       "@screens*": ["src/screens", "src/screens/*"]
