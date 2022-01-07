@@ -13,7 +13,7 @@ const MainGame: VFC = () => {
   return (
     <MainLayout>
       <ScreenWrapper>
-        <SwipeableCard />
+        <SwipeableCard cardText="Test card name" />
       </ScreenWrapper>
     </MainLayout>
   )

@@ -3,6 +3,10 @@ import styled from 'styled-components/native'
 import useSwipeableCard from '@hooks/useSwipeableCard'
 import type { VFC } from 'react'
 
+interface SwipeableCardProps {
+  cardText: string
+}
+
 // TODO: Determine width by using viewport width
 const Wrapper = styled(Animated.View)`
   background-color: white;
@@ -17,7 +21,8 @@ const Text = styled.Text`
   text-align: center;
 `
 
-const SwipeableCard: VFC = () => {
+const SwipeableCard: VFC<SwipeableCardProps> = (props) => {
+  const { cardText } = props
   const { leftPosition, rotation, panHandlers } = useSwipeableCard()
 
   return (
@@ -25,7 +30,7 @@ const SwipeableCard: VFC = () => {
       style={{ marginLeft: leftPosition, transform: [{ rotate: rotation }] }}
       {...panHandlers}
     >
-      <Text>Test character name</Text>
+      <Text>{cardText}</Text>
     </Wrapper>
   )
 }
