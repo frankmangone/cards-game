@@ -8,12 +8,13 @@ const Wrapper = styled(Animated.View)`
   background-color: white;
   border: 1px solid black;
   border-radius: 10px;
-  padding: 40px;
+  padding: 60px 40px;
   width: 300px;
 `
 
 const Text = styled.Text`
   font-size: 20px;
+  text-align: center;
 `
 
 const SwipeableCard: VFC = () => {
