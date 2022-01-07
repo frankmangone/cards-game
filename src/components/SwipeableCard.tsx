@@ -1,11 +1,11 @@
-import { VFC } from 'react'
 import { Animated } from 'react-native'
 import styled from 'styled-components/native'
+import type { VFC } from 'react'
 
 const Wrapper = styled(Animated.View)`
   border: 1px solid black;
   border-radius: 10px;
-  padding: 30px;
+  padding: 40px;
 `
 
 const Text = styled.Text`

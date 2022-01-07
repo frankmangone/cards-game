@@ -1,12 +1,12 @@
-import { VFC } from 'react'
-import { View } from 'react-native'
+import MainLayout from '@components/MainLayout'
 import SwipeableCard from '@components/SwipeableCard'
+import type { VFC } from 'react'
 
 const MainGame: VFC = () => {
   return (
-    <View>
+    <MainLayout>
       <SwipeableCard />
-    </View>
+    </MainLayout>
   )
 }
 
