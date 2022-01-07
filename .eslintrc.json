@@ -55,6 +55,10 @@
         "unnamedComponents": "arrow-function"
       }
     ],
+    // allow jsx syntax in js files (for next.js project)
+    "react/react-in-jsx-scope": "off",
+    //should add ".ts" if typescript project
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "prettier/prettier": 2
   }
 }
