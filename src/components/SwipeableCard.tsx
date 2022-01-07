@@ -17,15 +17,17 @@ const Text = styled.Text`
 const SwipeableCard: VFC = () => {
   const dragPosition = useRef(new Animated.Value(0))
   const leftPosition = dragPosition?.current.interpolate({
-    inputRange: [-1, 1],
-    outputRange: [-100, 100],
+    inputRange: [-1000, 1000],
+    outputRange: [-1000, 1000],
   })
 
-  // eslint-disable-next-line
   const dragPanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: (_event, _gestureState) => {},
+      onPanResponderMove: (_event, _gestureState) => {
+        const { dx } = _gestureState
+        dragPosition.current.setValue(dx)
+      },
       onPanResponderRelease: (_event, _gestureState) => {},
       onPanResponderTerminationRequest: () => false,
     })
