@@ -1,6 +1,6 @@
-import { useRef } from 'react'
-import { Animated, Easing, PanResponder } from 'react-native'
+import { Animated } from 'react-native'
 import styled from 'styled-components/native'
+import useSwipeableCard from '@hooks/useSwipeableCard'
 import type { VFC } from 'react'
 
 const Wrapper = styled(Animated.View)`
@@ -15,36 +15,11 @@ const Text = styled.Text`
   font-size: 20px;
 `
 
-const ANIMATION_DURATION = 200 // ms
-
 const SwipeableCard: VFC = () => {
-  const dragPosition = useRef(new Animated.Value(0))
-  const leftPosition = dragPosition?.current.interpolate({
-    inputRange: [-1000, 1000],
-    outputRange: [-1000, 1000],
-  })
-
-  const dragPanResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: (_event, _gestureState) => {
-        const { dx } = _gestureState
-        dragPosition.current.setValue(dx)
-      },
-      onPanResponderRelease: (_event, _gestureState) => {
-        Animated.timing(dragPosition.current, {
-          toValue: 1,
-          duration: ANIMATION_DURATION, // ms
-          useNativeDriver: false,
-          easing: Easing.out(Easing.ease),
-        }).start()
-      },
-      onPanResponderTerminationRequest: () => false,
-    })
-  ).current
+  const { leftPosition, panHandlers } = useSwipeableCard()
 
   return (
-    <Wrapper style={{ marginLeft: leftPosition }} {...dragPanResponder.panHandlers}>
+    <Wrapper style={{ marginLeft: leftPosition }} {...panHandlers}>
       <Text>Test character name</Text>
     </Wrapper>
   )
