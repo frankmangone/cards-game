@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 import type { VFC } from 'react'
 
 const Wrapper = styled(Animated.View)`
+  background-color: white;
   border: 1px solid black;
   border-radius: 10px;
   padding: 40px;
