@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
 import { Animated, Easing, PanResponder } from 'react-native'
 import type { GestureResponderHandlers } from 'react-native'
 
@@ -19,6 +19,10 @@ const useSwipeableCard = (options: HookOptions): ReturnValue => {
   const { onPass, onGuess } = options // eslint-disable-line
 
   const dragValue = useRef(new Animated.Value(0))
+
+  const [action, setAction] = useState<Maybe<'guess' | 'pass'>>(null) // eslint-disable-line
+  const handlePass = () => setAction('pass') // eslint-disable-line
+  const handleGuess = () => setAction('guess') // eslint-disable-line
 
   const leftPosition = dragValue?.current.interpolate({
     inputRange: [-1000, 1000],
