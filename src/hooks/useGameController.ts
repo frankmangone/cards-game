@@ -1,6 +1,11 @@
 import { useState } from 'react'
 
-const useGameController = () => {
+interface ReturnValue {
+  currentCard: string
+  passCard: () => void
+}
+
+const useGameController = (): ReturnValue => {
   /**
    * Treat `unguessed` as a stack from which we remove elements for guessing
    */

@@ -1,9 +1,16 @@
 import { useRef } from 'react'
 import { Animated, Easing, PanResponder } from 'react-native'
+import type { GestureResponderHandlers } from 'react-native'
+
+interface ReturnValue {
+  panHandlers: GestureResponderHandlers
+  leftPosition: Animated.AnimatedInterpolation
+  rotation: Animated.AnimatedInterpolation
+}
 
 const ANIMATION_DURATION = 200 // ms
 
-const useSwipeableCard = () => {
+const useSwipeableCard = (): ReturnValue => {
   const dragValue = useRef(new Animated.Value(0))
 
   const leftPosition = dragValue?.current.interpolate({
