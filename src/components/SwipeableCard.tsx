@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Animated, PanResponder } from 'react-native'
+import { Animated, Easing, PanResponder } from 'react-native'
 import styled from 'styled-components/native'
 import type { VFC } from 'react'
 
@@ -15,6 +15,8 @@ const Text = styled.Text`
   font-size: 20px;
 `
 
+const ANIMATION_DURATION = 200 // ms
+
 const SwipeableCard: VFC = () => {
   const dragPosition = useRef(new Animated.Value(0))
   const leftPosition = dragPosition?.current.interpolate({
@@ -29,7 +31,14 @@ const SwipeableCard: VFC = () => {
         const { dx } = _gestureState
         dragPosition.current.setValue(dx)
       },
-      onPanResponderRelease: (_event, _gestureState) => {},
+      onPanResponderRelease: (_event, _gestureState) => {
+        Animated.timing(dragPosition.current, {
+          toValue: 1,
+          duration: ANIMATION_DURATION, // ms
+          useNativeDriver: false,
+          easing: Easing.out(Easing.ease),
+        }).start()
+      },
       onPanResponderTerminationRequest: () => false,
     })
   ).current
