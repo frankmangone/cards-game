@@ -24,8 +24,12 @@ const Text = styled.Text`
 `
 
 const SwipeableCard: VFC<SwipeableCardProps> = (props) => {
-  const { cardText, passCard, guessCard } = props // eslint-disable-line
-  const { leftPosition, rotation, panHandlers } = useSwipeableCard()
+  const { cardText, passCard: onPass, guessCard: onGuess } = props
+
+  const { leftPosition, rotation, panHandlers } = useSwipeableCard({
+    onPass,
+    onGuess,
+  })
 
   return (
     <Wrapper

@@ -2,6 +2,11 @@ import { useRef } from 'react'
 import { Animated, Easing, PanResponder } from 'react-native'
 import type { GestureResponderHandlers } from 'react-native'
 
+interface HookOptions {
+  onPass: () => void
+  onGuess: () => void
+}
+
 interface ReturnValue {
   panHandlers: GestureResponderHandlers
   leftPosition: Animated.AnimatedInterpolation
@@ -10,7 +15,9 @@ interface ReturnValue {
 
 const ANIMATION_DURATION = 200 // ms
 
-const useSwipeableCard = (): ReturnValue => {
+const useSwipeableCard = (options: HookOptions): ReturnValue => {
+  const { onPass, onGuess } = options // eslint-disable-line
+
   const dragValue = useRef(new Animated.Value(0))
 
   const leftPosition = dragValue?.current.interpolate({
