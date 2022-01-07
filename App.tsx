@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
-import MainGameScreen from './src/screens/MainGame'
+import MainGameScreen from '@screens/MainGame'
 
 const App = () => {
   return (

@@ -1,8 +1,12 @@
 import { VFC } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 
 const MainGame: VFC = () => {
-  return <View></View>
+  return (
+    <View>
+      <Text>Test</Text>
+    </View>
+  )
 }
 
 export default MainGame
