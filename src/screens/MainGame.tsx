@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 import MainLayout from '@components/MainLayout'
 import SwipeableCard from '@components/SwipeableCard'
+import useGameController from '@hooks/useGameController'
 import type { VFC } from 'react'
 
 const ScreenWrapper = styled.View`
@@ -10,10 +11,12 @@ const ScreenWrapper = styled.View`
 `
 
 const MainGame: VFC = () => {
+  const { currentCard } = useGameController()
+
   return (
     <MainLayout>
       <ScreenWrapper>
-        <SwipeableCard cardText="Test card name" />
+        <SwipeableCard cardText={currentCard} />
       </ScreenWrapper>
     </MainLayout>
   )
