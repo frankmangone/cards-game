@@ -5,6 +5,8 @@ import type { VFC } from 'react'
 
 interface SwipeableCardProps {
   cardText: string
+  passCard: () => void
+  guessCard: () => void
 }
 
 // TODO: Determine width by using viewport width
@@ -22,7 +24,7 @@ const Text = styled.Text`
 `
 
 const SwipeableCard: VFC<SwipeableCardProps> = (props) => {
-  const { cardText } = props
+  const { cardText, passCard, guessCard } = props // eslint-disable-line
   const { leftPosition, rotation, panHandlers } = useSwipeableCard()
 
   return (

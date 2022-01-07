@@ -11,12 +11,12 @@ const ScreenWrapper = styled.View`
 `
 
 const MainGame: VFC = () => {
-  const { currentCard } = useGameController()
+  const { currentCard, passCard, guessCard } = useGameController()
 
   return (
     <MainLayout>
       <ScreenWrapper>
-        <SwipeableCard cardText={currentCard} />
+        <SwipeableCard {...{ cardText: currentCard, passCard, guessCard }} />
       </ScreenWrapper>
     </MainLayout>
   )
