@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Animated } from 'react-native'
+import { Animated, PanResponder } from 'react-native'
 import styled from 'styled-components/native'
 import type { VFC } from 'react'
 
@@ -15,15 +15,24 @@ const Text = styled.Text`
 `
 
 const SwipeableCard: VFC = () => {
-  const swipePosition = useRef(new Animated.Value(0))
-
-  const leftPosition = swipePosition?.current.interpolate({
+  const dragPosition = useRef(new Animated.Value(0))
+  const leftPosition = dragPosition?.current.interpolate({
     inputRange: [-1, 1],
     outputRange: [-100, 100],
   })
 
+  // eslint-disable-next-line
+  const dragPanResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onPanResponderMove: (_event, _gestureState) => {},
+      onPanResponderRelease: (_event, _gestureState) => {},
+      onPanResponderTerminationRequest: () => false,
+    })
+  ).current
+
   return (
-    <Wrapper style={{ marginLeft: leftPosition }}>
+    <Wrapper style={{ marginLeft: leftPosition }} {...dragPanResponder.panHandlers}>
       <Text>Test character name</Text>
     </Wrapper>
   )
