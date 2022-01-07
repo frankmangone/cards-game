@@ -3,14 +3,15 @@ import { useState } from 'react'
 interface ReturnValue {
   currentCard: string
   passCard: () => void
+  guessCard: () => void
 }
 
 const useGameController = (): ReturnValue => {
   /**
    * Treat `unguessed` as a stack from which we remove elements for guessing
    */
-  const [unguessed, setUnguessed] = useState(mockStrings)
-  const [guessed, setGuessed] = useState([]) // eslint-disable-line
+  const [unguessed, setUnguessed] = useState<string[]>(mockStrings)
+  const [guessed, setGuessed] = useState<string[]>([])
 
   const currentCard = unguessed[unguessed.length - 1]
 
@@ -24,7 +25,18 @@ const useGameController = (): ReturnValue => {
     setUnguessed([currentCard, ...unguessed.slice(0, unguessed.length - 1)])
   }
 
-  return { currentCard, passCard }
+  /**
+   * guessCard
+   *
+   * Callback to be called when the user swipes right for 'guessing'
+   * (their team successfully guessed their card!)
+   */
+  const guessCard = () => {
+    setUnguessed([...unguessed.slice(0, unguessed.length - 1)])
+    setGuessed([...guessed, currentCard])
+  }
+
+  return { currentCard, passCard, guessCard }
 }
 
 export default useGameController
