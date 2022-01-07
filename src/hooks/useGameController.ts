@@ -4,12 +4,22 @@ const useGameController = () => {
   /**
    * Treat `unguessed` as a stack from which we remove elements for guessing
    */
-  const [unguessed, setunguessed] = useState(mockStrings) // eslint-disable-line
+  const [unguessed, setUnguessed] = useState(mockStrings)
   const [guessed, setGuessed] = useState([]) // eslint-disable-line
 
   const currentCard = unguessed[unguessed.length - 1]
 
-  return { currentCard }
+  /**
+   * passCard
+   *
+   * Callback to be called when the user swipes left for 'passing'
+   * (they can't make their team guess the current card!)
+   */
+  const passCard = () => {
+    setUnguessed([currentCard, ...unguessed.slice(0, unguessed.length - 1)])
+  }
+
+  return { currentCard, passCard }
 }
 
 export default useGameController
