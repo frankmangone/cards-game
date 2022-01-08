@@ -11,7 +11,7 @@ type ColorValue =
   | {
       name: string
       shade?: number
-      opacity?: string
+      opacity?: number
     }
 
 interface Theme {
