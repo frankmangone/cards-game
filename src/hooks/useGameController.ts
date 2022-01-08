@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 interface ReturnValue {
   currentCard: string
+  remainingCards: number
   passCard: () => void
   guessCard: () => void
 }
@@ -13,7 +14,11 @@ const useGameController = (): ReturnValue => {
   const [unguessed, setUnguessed] = useState<string[]>(mockStrings)
   const [guessed, setGuessed] = useState<string[]>([])
 
+  /**
+   * Game information
+   */
   const currentCard = unguessed[unguessed.length - 1]
+  const remainingCards = unguessed.length
 
   /**
    * passCard
@@ -36,7 +41,7 @@ const useGameController = (): ReturnValue => {
     setGuessed([...guessed, currentCard])
   }
 
-  return { currentCard, passCard, guessCard }
+  return { currentCard, remainingCards, passCard, guessCard }
 }
 
 export default useGameController
