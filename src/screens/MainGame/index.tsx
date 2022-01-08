@@ -15,7 +15,7 @@ const ScreenWrapper = styled.View`
 `
 
 const Done = styled.Text`
-  color: #913;
+  color: ${(props) => props.theme.getColor('red')};
   font-size: 30px;
 `
 
