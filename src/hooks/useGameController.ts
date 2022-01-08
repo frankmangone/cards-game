@@ -7,6 +7,7 @@ interface ReturnValue {
   dragValue: Animated.Value
   currentCard: string
   remainingCards: number
+  addCard: (value: string) => void
   passCard: () => void
   guessCard: () => void
   WIDTH: number
@@ -52,7 +53,25 @@ const useGameController = (): ReturnValue => {
     setGuessed([...guessed, currentCard])
   }
 
-  return { dragValue, currentCard, remainingCards, passCard, guessCard, WIDTH, SWIPE_THRESHOLD }
+  /**
+   * addCard
+   *
+   * During setup, adds a card to the `unguessed` array, for later use during play
+   */
+  const addCard = (value: string) => {
+    setUnguessed([...unguessed, value])
+  }
+
+  return {
+    dragValue,
+    currentCard,
+    remainingCards,
+    addCard,
+    passCard,
+    guessCard,
+    WIDTH,
+    SWIPE_THRESHOLD,
+  }
 }
 
 export default useGameController

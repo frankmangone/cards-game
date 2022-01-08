@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Platform } from 'react-native'
 
 const Wrapper = styled.View`
   flex: 1;
@@ -11,7 +12,20 @@ const Wrapper = styled.View`
 const MainLayout: React.FC = (props) => {
   const { children } = props
 
-  return <Wrapper>{children}</Wrapper>
+  const dismissKeyboard = () => {
+    Keyboard.dismiss()
+  }
+
+  return (
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <TouchableWithoutFeedback onPress={dismissKeyboard}>
+        <Wrapper>{children}</Wrapper>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  )
 }
 
 export default MainLayout

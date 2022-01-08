@@ -68,7 +68,7 @@ export const ThemeProvider: React.FC = (props) => {
   const buildHSLString = (hsl: ColorHSL, opacity: number): string => {
     const [hue, saturation, lightness] = hsl
     if (opacity === 100) return `hsl(${hue}, ${saturation}%, ${lightness}%)`
-    return `hsl(${hue}, ${saturation}%, ${lightness}%, ${opacity / 100})`
+    return `hsla(${hue}, ${saturation}%, ${lightness}%, ${opacity / 100})`
   }
 
   const contextValue = {

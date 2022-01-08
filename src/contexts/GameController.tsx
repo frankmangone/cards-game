@@ -28,7 +28,7 @@ export const GameControllerContext = createContext<ContextValues>(defaultValue)
 export const GameControllerProvider: React.FC = (props) => {
   const { children } = props
 
-  const unguessedState = useState<string[]>(mockStrings)
+  const unguessedState = useState<string[]>([])
   const guessedState = useState<string[]>([])
   const dragValueRef = useRef(new Animated.Value(0))
 
@@ -42,20 +42,3 @@ export const GameControllerProvider: React.FC = (props) => {
     <GameControllerContext.Provider value={contextValue}>{children}</GameControllerContext.Provider>
   )
 }
-
-const mockStrings = [
-  'Franco',
-  'Sosa',
-  'Tony',
-  'Batman',
-  'Tu vieja',
-  'Shakira',
-  'Superman',
-  'Terminator',
-  'El maestro Splinter',
-  'Leonardo Di Caprio',
-  'El Papa Francisco',
-  'Cleopatra',
-  'Akinator',
-  'Mi sombra',
-]
