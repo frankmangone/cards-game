@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Dimensions } from 'react-native'
-import { GameControllerContext } from '@screens/MainGame/GameController'
+import { GameControllerContext } from '@contexts/GameController'
 import type { Animated } from 'react-native'
 
 interface ReturnValue {

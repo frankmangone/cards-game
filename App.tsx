@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar'
 import ContextProvider from '@contexts/ContextProvider'
-import MainGameScreen from '@screens/MainGame'
+import NavigationRouter from './NavigationRouter'
 
 const App: React.VFC = () => {
   return (
     <ContextProvider>
-      <MainGameScreen />
+      <NavigationRouter />
       <StatusBar style="auto" />
     </ContextProvider>
   )
