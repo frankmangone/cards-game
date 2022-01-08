@@ -92,6 +92,7 @@ const useSwipeableCard = (options: HookOptions): ReturnValue => {
     if (action === 'pass') onPass()
     else onGuess()
 
+    setAction(null)
     popNewCard()
   }, [action])
 
