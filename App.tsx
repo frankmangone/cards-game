@@ -1,23 +1,14 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View } from 'react-native'
+import ContextProvider from '@contexts/ContextProvider'
 import MainGameScreen from '@screens/MainGame'
 
-const App = () => {
+const App: React.VFC = () => {
   return (
-    <View style={styles.container}>
+    <ContextProvider>
       <MainGameScreen />
       <StatusBar style="auto" />
-    </View>
+    </ContextProvider>
   )
 }
 
 export default App
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
