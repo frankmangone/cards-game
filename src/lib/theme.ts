@@ -1,6 +1,6 @@
 /**
  * Colors
- * https://coolors.co/fefdfb-fbf8ef-f9f4e7-61a0af-d0114a-1eae79
+ * https://coolors.co/1d1607-fefdfb-fbf8ef-f9f4e7-61a0af-d0114a-1eae79
  **/
 const COLORS: Colors = {
   // 'primary' | 'red' | 'green' | 'white' | 'black'

@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import { GameControllerContext } from '@screens/MainGame/GameController'
+import type { Animated } from 'react-native'
 
 interface ReturnValue {
+  dragValue: Animated.Value
   currentCard: string
   remainingCards: number
   passCard: () => void
@@ -8,11 +11,13 @@ interface ReturnValue {
 }
 
 const useGameController = (): ReturnValue => {
+  const { dragValue, unguessedState, guessedState } = useContext(GameControllerContext)
+
   /**
    * Treat `unguessed` as a stack from which we remove elements for guessing
    */
-  const [unguessed, setUnguessed] = useState<string[]>(mockStrings)
-  const [guessed, setGuessed] = useState<string[]>([])
+  const [unguessed, setUnguessed] = unguessedState
+  const [guessed, setGuessed] = guessedState
 
   /**
    * Game information
@@ -41,24 +46,7 @@ const useGameController = (): ReturnValue => {
     setGuessed([...guessed, currentCard])
   }
 
-  return { currentCard, remainingCards, passCard, guessCard }
+  return { dragValue, currentCard, remainingCards, passCard, guessCard }
 }
 
 export default useGameController
-
-const mockStrings = [
-  'Franco',
-  'Sosa',
-  'Tony',
-  'Batman',
-  'Tu vieja',
-  'Shakira',
-  'Superman',
-  'Terminator',
-  'El maestro Splinter',
-  'Leonardo Di Caprio',
-  'El Papa Francisco',
-  'Cleopatra',
-  'Akinator',
-  'Mi sombra',
-]

@@ -1,17 +1,13 @@
 import styled from 'styled-components/native'
-import type { VFC } from 'react'
-
-interface CardsLeftProps {
-  remainingCards: number
-}
+import useGameController from '@hooks/useGameController'
 
 const Text = styled.Text`
   font-size: 30px;
   margin-bottom: 60px;
 `
 
-const CardsLeft: VFC<CardsLeftProps> = (props) => {
-  const { remainingCards } = props
+const CardsLeft: React.VFC = () => {
+  const { remainingCards } = useGameController()
   return <Text>Cards remaining: {remainingCards}</Text>
 }
 

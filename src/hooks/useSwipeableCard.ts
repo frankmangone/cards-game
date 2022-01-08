@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Animated, Easing, PanResponder } from 'react-native'
+import useGameController from '@hooks/useGameController'
 import type { GestureResponderHandlers } from 'react-native'
 
 interface HookOptions {
@@ -18,18 +19,18 @@ const ANIMATION_DURATION = 200 // ms
 const useSwipeableCard = (options: HookOptions): ReturnValue => {
   const { onPass, onGuess } = options
 
-  const dragValue = useRef(new Animated.Value(0))
+  const { dragValue } = useGameController()
 
   const [action, setAction] = useState<Maybe<'guess' | 'pass'>>(null)
   const handlePass = () => setAction('pass')
   const handleGuess = () => setAction('guess')
 
-  const leftPosition = dragValue?.current.interpolate({
+  const leftPosition = dragValue.interpolate({
     inputRange: [-1000, 1000],
     outputRange: [-1000, 1000],
   })
 
-  const rotation = dragValue?.current.interpolate({
+  const rotation = dragValue.interpolate({
     inputRange: [-1000, 1000],
     outputRange: [-2, 2],
   })
@@ -40,7 +41,7 @@ const useSwipeableCard = (options: HookOptions): ReturnValue => {
    * Basically a method to reuse the animation setup, and keeping things DRY
    */
   const animateToValue = (value: number, callback?: () => void) => {
-    Animated.timing(dragValue.current, {
+    Animated.timing(dragValue, {
       toValue: value,
       duration: ANIMATION_DURATION, // ms
       useNativeDriver: false,
@@ -55,14 +56,14 @@ const useSwipeableCard = (options: HookOptions): ReturnValue => {
    *
    * After guessing / passing, shows the player a new card by resetting its position
    */
-  const popNewCard = () => dragValue.current.setValue(0)
+  const popNewCard = () => dragValue.setValue(0)
 
   const dragPanResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (_event, gestureState) => {
         const { dx } = gestureState
-        dragValue.current.setValue(dx)
+        dragValue.setValue(dx)
       },
       onPanResponderRelease: (_event, gestureState) => {
         if (gestureState.dx > 100) {
