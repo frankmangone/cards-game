@@ -1,5 +1,3 @@
-import React from 'react'
-import { View } from 'react-native'
 import { SvgXml } from 'react-native-svg'
 
 const xml = `
@@ -15,11 +13,7 @@ const xml = `
 `
 
 const GamePassIcon: React.VFC = () => {
-  return (
-    <View>
-      <SvgXml xml={xml} width={60} height={60} />
-    </View>
-  )
+  return <SvgXml xml={xml} width={60} height={60} />
 }
 
 export default GamePassIcon
