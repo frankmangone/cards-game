@@ -3,6 +3,7 @@ import MainLayout from '@components/MainLayout'
 import Show from '@components/Show'
 import SwipeableCard from '@components/SwipeableCard'
 import RemainingCards from './RemainingCards'
+import GameGuessIcon from './GameGuessIcon'
 import GamePassIcon from './GamePassIcon'
 import useGameController from '@hooks/useGameController'
 import type { VFC } from 'react'
@@ -28,6 +29,7 @@ const MainGame: VFC = () => {
         <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
           <SwipeableCard {...{ cardText: currentCard, passCard, guessCard }} />
         </Show>
+        <GameGuessIcon />
         <GamePassIcon />
       </ScreenWrapper>
     </MainLayout>
