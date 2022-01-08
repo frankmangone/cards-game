@@ -1,7 +1,12 @@
 import { SvgXml } from 'react-native-svg'
 import { useTheme } from '@contexts/Theme'
 
-const GamePassIcon: React.VFC = () => {
+interface IconProps {
+  size?: number
+}
+
+const GamePassIcon: React.VFC<IconProps> = (props) => {
+  const { size = 60 } = props
   const { getColor } = useTheme()
 
   const red = getColor('red')
@@ -16,7 +21,7 @@ const GamePassIcon: React.VFC = () => {
     </svg>
   `
 
-  return <SvgXml xml={xml} width={60} height={60} />
+  return <SvgXml xml={xml} width={size} height={size} />
 }
 
 export default GamePassIcon

@@ -1,7 +1,12 @@
 import { SvgXml } from 'react-native-svg'
 import { useTheme } from '@contexts/Theme'
 
-const GameGuessIcon: React.VFC = () => {
+interface IconProps {
+  size?: number
+}
+
+const GameGuessIcon: React.VFC<IconProps> = (props) => {
+  const { size = 60 } = props
   const { getColor } = useTheme()
 
   const green = getColor('green')
@@ -15,7 +20,7 @@ const GameGuessIcon: React.VFC = () => {
     </svg>
   `
 
-  return <SvgXml xml={xml} width={60} height={60} />
+  return <SvgXml xml={xml} width={size} height={size} />
 }
 
 export default GameGuessIcon
