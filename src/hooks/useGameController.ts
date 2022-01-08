@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Dimensions } from 'react-native'
 import { GameControllerContext } from '@screens/MainGame/GameController'
 import type { Animated } from 'react-native'
 
@@ -8,10 +9,15 @@ interface ReturnValue {
   remainingCards: number
   passCard: () => void
   guessCard: () => void
+  WIDTH: number
+  SWIPE_THRESHOLD: number
 }
 
 const useGameController = (): ReturnValue => {
   const { dragValue, unguessedState, guessedState } = useContext(GameControllerContext)
+
+  const { width: WIDTH } = Dimensions.get('window')
+  const SWIPE_THRESHOLD = WIDTH * 0.5
 
   /**
    * Treat `unguessed` as a stack from which we remove elements for guessing
@@ -46,7 +52,7 @@ const useGameController = (): ReturnValue => {
     setGuessed([...guessed, currentCard])
   }
 
-  return { dragValue, currentCard, remainingCards, passCard, guessCard }
+  return { dragValue, currentCard, remainingCards, passCard, guessCard, WIDTH, SWIPE_THRESHOLD }
 }
 
 export default useGameController
