@@ -1,5 +1,6 @@
 import styled from 'styled-components/native'
 import MainLayout from '@components/MainLayout'
+import Show from '@components/Show'
 import SwipeableCard from '@components/SwipeableCard'
 import RemainingCards from './RemainingCards'
 import useGameController from '@hooks/useGameController'
@@ -11,6 +12,11 @@ const ScreenWrapper = styled.View`
   flex: 1;
 `
 
+const Done = styled.Text`
+  color: #913;
+  font-size: 30px;
+`
+
 const MainGame: VFC = () => {
   const { currentCard, remainingCards, passCard, guessCard } = useGameController()
 
@@ -18,7 +24,9 @@ const MainGame: VFC = () => {
     <MainLayout>
       <ScreenWrapper>
         <RemainingCards remainingCards={remainingCards} />
-        <SwipeableCard {...{ cardText: currentCard, passCard, guessCard }} />
+        <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
+          <SwipeableCard {...{ cardText: currentCard, passCard, guessCard }} />
+        </Show>
       </ScreenWrapper>
     </MainLayout>
   )
