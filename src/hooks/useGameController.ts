@@ -17,7 +17,7 @@ const useGameController = (): ReturnValue => {
   const { dragValue, unguessedState, guessedState } = useContext(GameControllerContext)
 
   const { width: WIDTH } = Dimensions.get('window')
-  const SWIPE_THRESHOLD = WIDTH * 0.5
+  const SWIPE_THRESHOLD = WIDTH * 0.4
 
   /**
    * Treat `unguessed` as a stack from which we remove elements for guessing

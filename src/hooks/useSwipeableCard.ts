@@ -20,19 +20,20 @@ const useSwipeableCard = (options: HookOptions): ReturnValue => {
   const { onPass, onGuess } = options
 
   const { dragValue, WIDTH, SWIPE_THRESHOLD } = useGameController()
+  const CARD_BOUNDARY = WIDTH * 2
 
   const [action, setAction] = useState<Maybe<'guess' | 'pass'>>(null)
   const handlePass = () => setAction('pass')
   const handleGuess = () => setAction('guess')
 
   const leftPosition = dragValue.interpolate({
-    inputRange: [-WIDTH, WIDTH],
-    outputRange: [-WIDTH, WIDTH],
+    inputRange: [-CARD_BOUNDARY, CARD_BOUNDARY],
+    outputRange: [-CARD_BOUNDARY, CARD_BOUNDARY],
   })
 
   const rotation = dragValue.interpolate({
-    inputRange: [-WIDTH, WIDTH],
-    outputRange: [-0.5, 0.5],
+    inputRange: [-CARD_BOUNDARY, CARD_BOUNDARY],
+    outputRange: [-0.6, 0.6],
   })
 
   /**
@@ -68,13 +69,13 @@ const useSwipeableCard = (options: HookOptions): ReturnValue => {
       onPanResponderRelease: (_event, gestureState) => {
         if (gestureState.dx > SWIPE_THRESHOLD) {
           // Guess
-          animateToValue(WIDTH, handleGuess)
+          animateToValue(CARD_BOUNDARY, handleGuess)
           return
         }
 
         if (gestureState.dx < -SWIPE_THRESHOLD) {
           // Pass
-          animateToValue(-WIDTH, handlePass)
+          animateToValue(-CARD_BOUNDARY, handlePass)
           return
         }
 

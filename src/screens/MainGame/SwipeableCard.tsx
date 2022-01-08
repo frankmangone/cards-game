@@ -13,7 +13,7 @@ const Wrapper = styled(Animated.View)`
 `
 
 const Text = styled.Text`
-  font-size: 20px;
+  font-size: 40px;
   text-align: center;
 `
 
