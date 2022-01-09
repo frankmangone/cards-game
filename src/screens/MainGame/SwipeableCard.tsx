@@ -6,10 +6,11 @@ import useGameController from '@hooks/useGameController'
 // TODO: Determine width by using viewport width
 const Wrapper = styled(Animated.View)`
   background-color: white;
-  border: 1px solid black;
+  border: 3px solid ${(props) => props.theme.getColor({ name: 'black', opacity: 5 })};
   border-radius: 10px;
   padding: 60px 40px;
   width: 300px;
+  z-index: 5;
 `
 
 const Text = styled.Text`

@@ -4,7 +4,7 @@ import { KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Platform } fr
 const Wrapper = styled.View`
   flex: 1;
   align-self: stretch;
-  background-color: #ccc;
+  background-color: ${(props) => props.theme.getColor('primary')};
   justify-content: center;
   padding: 10px;
 `

@@ -33,7 +33,7 @@ const CardInputScreen: React.VFC = () => {
         value={newCard}
         onChangeText={handleChangeText}
       />
-      <Button onPress={handleAddCard} color="green">
+      <Button onPress={handleAddCard} color="green" disabled={!newCard}>
         ADD
       </Button>
       <Separator height={40} />

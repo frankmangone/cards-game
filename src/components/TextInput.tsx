@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components/native'
 import { View } from 'react-native'
 import Show from '@components/Show'
@@ -9,13 +10,24 @@ interface TextInputProps {
   onChangeText: (value: string) => void
 }
 
+interface InputProps {
+  focused: boolean
+}
+
+const InputWrapper = styled.View<InputProps>`
+  border: 3px solid
+    ${(props) => {
+      const { getColor } = props.theme
+      return props.focused ? getColor('black') : getColor({ name: 'black', opacity: 30 })
+    }};
+  border-radius: 4px;
+  margin: 10px 0;
+`
+
 const Input = styled.TextInput`
   background-color: ${(props) => props.theme.getColor('white')};
-  border: 3px solid ${(props) => props.theme.getColor({ name: 'black', opacity: 50 })};
-  border-radius: 4px;
   font-size: 20px;
-  padding: 12px 16px;
-  margin: 10px 0;
+  padding: 16px 16px;
 `
 
 const Label = styled.Text`
@@ -26,13 +38,24 @@ const Label = styled.Text`
 
 const TextInput: React.VFC<TextInputProps> = (props) => {
   const { label, placeholder, value, onChangeText } = props
+  const [focused, setFocused] = useState<boolean>(false)
 
   return (
     <View>
       <Show when={label}>
         <Label>{label}</Label>
       </Show>
-      <Input {...{ placeholder, value, onChangeText }} />
+      <InputWrapper focused={focused}>
+        <Input
+          {...{
+            placeholder,
+            value,
+            onChangeText,
+            onFocus: () => setFocused(true),
+            onBlur: () => setFocused(false),
+          }}
+        />
+      </InputWrapper>
     </View>
   )
 }

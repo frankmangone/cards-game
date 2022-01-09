@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 import useGameController from '@hooks/useGameController'
 import Show from '@components/Show'
+import FakeCardStack from './FakeCardStack'
 import SwipeableCard from './SwipeableCard'
 import RemainingCards from './RemainingCards'
 import GameGuessIcon from './GameGuessIcon'
@@ -26,6 +27,7 @@ const GameInterface: React.VFC = () => {
       <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
         <SwipeableCard />
       </Show>
+      <FakeCardStack remainingCards={remainingCards} />
       <GameGuessIcon />
       <GamePassIcon />
     </ScreenWrapper>
