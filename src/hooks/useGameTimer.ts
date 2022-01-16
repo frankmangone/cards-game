@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import TimerContext from '@contexts/GameController/Timer'
+import useGameFinish from '@hooks/useGameFinish'
 
 interface ReturnValue {
   timer: Timer
@@ -7,7 +8,8 @@ interface ReturnValue {
 }
 
 const useGameTimer = (): ReturnValue => {
-  const [timer, setTimer] = useContext(TimerContext) // eslint-disable-line
+  const [timer, setTimer] = useContext(TimerContext)
+  const { finishGame } = useGameFinish()
 
   const startTimer = () => {
     let currentValue = 60
@@ -17,7 +19,10 @@ const useGameTimer = (): ReturnValue => {
       currentValue--
       setTimer(currentValue)
 
-      if (currentValue === 0) clearInterval(interval)
+      if (currentValue === 0) {
+        clearInterval(interval)
+        finishGame()
+      }
     }, 1000)
   }
 

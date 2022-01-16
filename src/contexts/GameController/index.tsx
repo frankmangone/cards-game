@@ -1,5 +1,6 @@
 import { CardsProvider } from './Cards'
 import { CountdownProvider } from './Countdown'
+import { FinishProvider } from './Finish'
 import { TimerProvider } from './Timer'
 
 /**
@@ -14,9 +15,11 @@ export const GameControllerProvider: React.FC = (props) => {
 
   return (
     <CardsProvider>
-      <CountdownProvider>
-        <TimerProvider>{children}</TimerProvider>
-      </CountdownProvider>
+      <FinishProvider>
+        <CountdownProvider>
+          <TimerProvider>{children}</TimerProvider>
+        </CountdownProvider>
+      </FinishProvider>
     </CardsProvider>
   )
 }
