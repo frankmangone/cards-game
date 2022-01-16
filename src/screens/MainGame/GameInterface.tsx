@@ -29,7 +29,7 @@ const CardsWrapper = styled.View`
 const GameInterface: React.VFC = () => {
   const { remainingCards } = useGameCards()
   const { startTimer, stopTimer } = useGameTimer()
-  const { isFinished, isStarted } = useGameFinish()
+  const { isFinished, isStarted, finishGame } = useGameFinish()
 
   useEffect(() => {
     if (!isStarted) return
@@ -41,6 +41,7 @@ const GameInterface: React.VFC = () => {
 
     // Stop timer, end game
     stopTimer()
+    finishGame()
   }, [remainingCards])
 
   const showGame = remainingCards > 0 && !isFinished

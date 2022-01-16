@@ -11,8 +11,15 @@ interface ReturnValue {
 const useGameFinish = (): ReturnValue => {
   const [isFinished, setIsFinished] = useContext(FinishContext)
 
-  const finishGame = () => setIsFinished(true)
+  const finishGame = () => {
+    setIsFinished(true)
+    startFinishTimer()
+  }
   const startGame = () => setIsFinished(false)
+
+  const startFinishTimer = () => {
+    console.log('start finish timer')
+  }
 
   return {
     isFinished,
