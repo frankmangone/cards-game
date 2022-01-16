@@ -5,7 +5,7 @@ import useGameTimer from '@hooks/useGameTimer'
 import useGameFinish from '@hooks/useGameFinish'
 import Separator from '@components/Separator'
 import Show from '@components/Show'
-import FakeCardStack from './FakeCardStack'
+import CardStack from './CardStack'
 import FinishedCard from './FinishedCard'
 import GuessedCards from './GuessedCards'
 import RemainingCards from './RemainingCards'
@@ -47,7 +47,7 @@ const GameInterface: React.VFC = () => {
       <CardsWrapper>
         <Show when={showGame} fallback={<FinishedCard text="Done!" />}>
           <SwipeableCard />
-          <FakeCardStack remainingCards={remainingCards} />
+          <CardStack remainingCards={remainingCards} />
         </Show>
       </CardsWrapper>
       <GameGuessIcon />
