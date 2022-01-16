@@ -28,13 +28,20 @@ const CardsWrapper = styled.View`
 
 const GameInterface: React.VFC = () => {
   const { remainingCards } = useGameCards()
-  const { startTimer } = useGameTimer()
+  const { startTimer, stopTimer } = useGameTimer()
   const { isFinished, isStarted } = useGameFinish()
 
   useEffect(() => {
     if (!isStarted) return
     startTimer()
   }, [])
+
+  useEffect(() => {
+    if (remainingCards > 0) return
+
+    // Stop timer, end game
+    stopTimer()
+  }, [remainingCards])
 
   const showGame = remainingCards > 0 && !isFinished
 
@@ -45,7 +52,10 @@ const GameInterface: React.VFC = () => {
       <GuessedCards />
       <Timer />
       <CardsWrapper>
-        <Show when={showGame} fallback={<FinishedCard text="Done!" />}>
+        <Show
+          when={showGame}
+          fallback={<FinishedCard text={remainingCards > 0 ? "Time's up!" : 'Done!'} />}
+        >
           <SwipeableCard />
           <CardStack remainingCards={remainingCards} />
         </Show>

@@ -5,6 +5,7 @@ import useGameFinish from '@hooks/useGameFinish'
 interface ReturnValue {
   timer: Timer
   startTimer: () => void
+  stopTimer: () => void
 }
 
 const useGameTimer = (): ReturnValue => {
@@ -14,6 +15,13 @@ const useGameTimer = (): ReturnValue => {
 
   const { finishGame } = useGameFinish()
 
+  const clearTimerInterval = () => {
+    if (!intervalRef.current) return
+
+    clearInterval(intervalRef.current)
+    intervalRef.current = null
+  }
+
   const startTimer = () => {
     let currentValue = 10
     setTimer(10)
@@ -22,23 +30,24 @@ const useGameTimer = (): ReturnValue => {
       currentValue--
       setTimer(currentValue)
 
-      if (currentValue === 0) {
-        if (intervalRef.current) clearInterval(intervalRef.current)
-        finishGame()
-      }
+      if (currentValue !== 0) return
+
+      finishGame()
+      clearTimerInterval()
     }, 1000)
   }
+
+  const stopTimer = clearTimerInterval
 
   // TODO: Cleanup when out of focus
 
   useEffect(() => {
     return () => {
-      if (!intervalRef.current) return
-      clearInterval(intervalRef.current)
+      clearTimerInterval()
     }
   }, [])
 
-  return { timer, startTimer }
+  return { timer, startTimer, stopTimer }
 }
 
 export default useGameTimer
