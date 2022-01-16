@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 
 const InfoWrapper = styled.View`
+  align-items: center;
   align-self: stretch;
   background-color: ${(props) => props.theme.getColor('white')};
   border-radius: 10px;
