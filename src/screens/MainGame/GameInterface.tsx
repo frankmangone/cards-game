@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 import useGameCards from '@hooks/useGameCards'
 import useGameTimer from '@hooks/useGameTimer'
 import useGameFinish from '@hooks/useGameFinish'
+import Separator from '@components/Separator'
 import Show from '@components/Show'
 import FakeCardStack from './FakeCardStack'
 import SwipeableCard from './SwipeableCard'
@@ -15,6 +16,11 @@ const ScreenWrapper = styled.View`
   align-items: center;
   justify-content: center;
   flex: 1;
+`
+
+const CardsWrapper = styled.View`
+  flex-grow: 1;
+  justify-content: center;
 `
 
 const Done = styled.Text`
@@ -34,11 +40,14 @@ const GameInterface: React.VFC = () => {
 
   return (
     <ScreenWrapper>
+      <Separator height={180} />
       <RemainingCards />
       <Timer />
-      <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
-        <SwipeableCard />
-      </Show>
+      <CardsWrapper>
+        <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
+          <SwipeableCard />
+        </Show>
+      </CardsWrapper>
       <FakeCardStack remainingCards={remainingCards} />
       <GameGuessIcon />
       <GamePassIcon />
