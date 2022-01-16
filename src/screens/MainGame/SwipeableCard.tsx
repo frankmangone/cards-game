@@ -1,15 +1,16 @@
-import { Animated } from 'react-native'
+import { Animated, Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 import useSwipeableCard from '@hooks/useSwipeableCard'
 import useGameCards from '@hooks/useGameCards'
 
-// TODO: Determine width by using viewport width
 const Wrapper = styled(Animated.View)`
   background-color: white;
   border: 3px solid ${(props) => props.theme.getColor({ name: 'black', opacity: 5 })};
   border-radius: 10px;
+  justify-content: center;
   padding: 60px 40px;
-  width: 300px;
+  min-height: 200px;
+  width: ${Dimensions.get('window').width - 20}px;
   z-index: 5;
 `
 

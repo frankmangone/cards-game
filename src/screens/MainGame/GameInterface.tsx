@@ -5,7 +5,8 @@ import useGameTimer from '@hooks/useGameTimer'
 import useGameFinish from '@hooks/useGameFinish'
 import Separator from '@components/Separator'
 import Show from '@components/Show'
-import FakeCardStack from './FakeCardStack'
+import CardStack from './CardStack'
+import FinishedCard from './FinishedCard'
 import GuessedCards from './GuessedCards'
 import RemainingCards from './RemainingCards'
 import SwipeableCard from './SwipeableCard'
@@ -25,20 +26,25 @@ const CardsWrapper = styled.View`
   align-items: center;
 `
 
-const Done = styled.Text`
-  color: ${(props) => props.theme.getColor('red')};
-  font-size: 30px;
-`
-
 const GameInterface: React.VFC = () => {
   const { remainingCards } = useGameCards()
-  const { startTimer } = useGameTimer()
-  const { isStarted } = useGameFinish()
+  const { startTimer, stopTimer } = useGameTimer()
+  const { isFinished, isStarted, finishGame } = useGameFinish()
 
   useEffect(() => {
     if (!isStarted) return
     startTimer()
   }, [])
+
+  useEffect(() => {
+    if (remainingCards > 0) return
+
+    // Stop timer, end game
+    stopTimer()
+    finishGame()
+  }, [remainingCards])
+
+  const showGame = remainingCards > 0 && !isFinished
 
   return (
     <ScreenWrapper>
@@ -47,10 +53,13 @@ const GameInterface: React.VFC = () => {
       <GuessedCards />
       <Timer />
       <CardsWrapper>
-        <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
+        <Show
+          when={showGame}
+          fallback={<FinishedCard text={remainingCards > 0 ? "Time's up!" : 'Done!'} />}
+        >
           <SwipeableCard />
+          <CardStack remainingCards={remainingCards} />
         </Show>
-        <FakeCardStack remainingCards={remainingCards} />
       </CardsWrapper>
       <GameGuessIcon />
       <GamePassIcon />

@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { Dimensions } from 'react-native'
 import Show from '@components/Show'
 
 interface FakeCardStackProps {
@@ -23,19 +24,19 @@ const Wrapper = styled.View<StackCardProps>`
     switch (props.stackPosition) {
       case 3:
         return `
-          width: 280px;
+          width: ${Dimensions.get('window').width - 40}px;
           height: 160px;
           margin-top: -148px;
         `
       case 2:
         return `
-          width: 260px;
+          width: ${Dimensions.get('window').width - 60}px;
           height: 150px;
           margin-top: -138px;
         `
       case 1:
         return `
-          width: 240px;
+          width: ${Dimensions.get('window').width - 80}px;
           height: 140px;
           margin-top: -128px;
         `

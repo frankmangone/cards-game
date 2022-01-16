@@ -10,14 +10,13 @@ const useGameCountdown = (): ReturnValue => {
   const [countdown, setCountdown] = useContext(CoundownContext)
 
   const startCountdown = () => {
-    let currentValue = 3
     setCountdown(3)
 
     const interval = setInterval(() => {
-      currentValue--
-      setCountdown(currentValue)
+      const newValue = countdown - 1
+      setCountdown(newValue)
 
-      if (currentValue === 0) clearInterval(interval)
+      if (newValue === 0) clearInterval(interval)
     }, 1000)
   }
 
