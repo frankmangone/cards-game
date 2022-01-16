@@ -15,8 +15,8 @@ const useGameTimer = (): ReturnValue => {
   const { finishGame } = useGameFinish()
 
   const startTimer = () => {
-    let currentValue = 60
-    setTimer(60)
+    let currentValue = 10
+    setTimer(10)
 
     intervalRef.current = setInterval(() => {
       currentValue--

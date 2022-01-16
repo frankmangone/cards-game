@@ -33,12 +33,14 @@ const Done = styled.Text`
 const GameInterface: React.VFC = () => {
   const { remainingCards } = useGameCards()
   const { startTimer } = useGameTimer()
-  const { isStarted } = useGameFinish()
+  const { isFinished, isStarted } = useGameFinish()
 
   useEffect(() => {
     if (!isStarted) return
     startTimer()
   }, [])
+
+  const showGame = remainingCards > 0 && !isFinished
 
   return (
     <ScreenWrapper>
@@ -47,10 +49,10 @@ const GameInterface: React.VFC = () => {
       <GuessedCards />
       <Timer />
       <CardsWrapper>
-        <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
+        <Show when={showGame} fallback={<Done>Done!</Done>}>
           <SwipeableCard />
+          <FakeCardStack remainingCards={remainingCards} />
         </Show>
-        <FakeCardStack remainingCards={remainingCards} />
       </CardsWrapper>
       <GameGuessIcon />
       <GamePassIcon />
