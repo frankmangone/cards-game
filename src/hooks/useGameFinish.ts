@@ -3,6 +3,7 @@ import FinishContext from '@contexts/GameController/Finish'
 
 interface ReturnValue {
   isFinished: boolean
+  isStarted: boolean
   finishGame: () => void
   startGame: () => void
 }
@@ -15,6 +16,7 @@ const useGameFinish = (): ReturnValue => {
 
   return {
     isFinished,
+    isStarted: !isFinished,
     finishGame,
     startGame,
   }

@@ -26,10 +26,10 @@ const Done = styled.Text`
 const GameInterface: React.VFC = () => {
   const { remainingCards } = useGameCards()
   const { startTimer } = useGameTimer()
-  const { isFinished } = useGameFinish()
+  const { isStarted } = useGameFinish()
 
   useEffect(() => {
-    if (isFinished) return
+    if (!isStarted) return
     startTimer()
   }, [])
 
