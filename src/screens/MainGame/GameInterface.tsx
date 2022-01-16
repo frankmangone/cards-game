@@ -35,13 +35,13 @@ const GameInterface: React.VFC = () => {
   return (
     <ScreenWrapper>
       <RemainingCards />
+      <Timer />
       <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
         <SwipeableCard />
       </Show>
       <FakeCardStack remainingCards={remainingCards} />
       <GameGuessIcon />
       <GamePassIcon />
-      <Timer />
     </ScreenWrapper>
   )
 }
