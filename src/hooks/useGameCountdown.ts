@@ -7,8 +7,7 @@ interface ReturnValue {
 }
 
 const useGameCountdown = (): ReturnValue => {
-  const { countdownState } = useContext(GameCountdownContext)
-  const [countdown, setCountdown] = countdownState
+  const [countdown, setCountdown] = useContext(GameCountdownContext)
 
   const startCountdown = () => {
     let currentValue = 3

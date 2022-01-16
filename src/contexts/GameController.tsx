@@ -7,9 +7,7 @@ interface GameControllerContextValues {
   guessedState: ReactState<string[]>
 }
 
-interface GameCountdownContextValues {
-  countdownState: ReactState<Countdown>
-}
+type GameCountdownContextValues = ReactState<Countdown>
 
 const gameControllerDefaultValue: GameControllerContextValues = {
   dragValue: new Animated.Value(0),
@@ -17,9 +15,7 @@ const gameControllerDefaultValue: GameControllerContextValues = {
   guessedState: [[], () => {}],
 }
 
-const gameCountdownDefaultValue: GameCountdownContextValues = {
-  countdownState: [0, () => {}],
-}
+const gameCountdownDefaultValue: GameCountdownContextValues = [0, () => {}]
 
 /**
  * Contexts
@@ -51,13 +47,11 @@ export const GameControllerProvider: React.FC = (props) => {
     guessedState,
   }
 
-  const countdown = {
-    countdownState,
-  }
-
   return (
     <GameControllerContext.Provider value={controller}>
-      <GameCountdownContext.Provider value={countdown}>{children}</GameCountdownContext.Provider>
+      <GameCountdownContext.Provider value={countdownState}>
+        {children}
+      </GameCountdownContext.Provider>
     </GameControllerContext.Provider>
   )
 }
