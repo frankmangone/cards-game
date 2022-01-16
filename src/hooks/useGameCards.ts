@@ -9,6 +9,7 @@ import type { Animated } from 'react-native'
 interface ReturnValue {
   dragValue: Animated.Value
   currentCard: string
+  guessedCards: number
   remainingCards: number
   addCard: (value: string) => void
   passCard: () => void
@@ -36,6 +37,7 @@ const useGameCards = (): ReturnValue => {
    * Game information
    */
   const currentCard = unguessed[unguessed.length - 1]
+  const guessedCards = guessed.length
   const remainingCards = unguessed.length
 
   /**
@@ -87,6 +89,7 @@ const useGameCards = (): ReturnValue => {
   return {
     dragValue,
     currentCard,
+    guessedCards,
     remainingCards,
     addCard,
     passCard,
