@@ -3,24 +3,25 @@ import TimerContext from '@contexts/GameController/Timer'
 
 interface ReturnValue {
   timer: Timer
+  startTimer: () => void
 }
 
 const useGameTimer = (): ReturnValue => {
   const [timer, setTimer] = useContext(TimerContext) // eslint-disable-line
 
-  // const startCountdown = () => {
-  //   let currentValue = 3
-  //   setCountdown(3)
+  const startTimer = () => {
+    let currentValue = 60
+    setTimer(60)
 
-  //   const interval = setInterval(() => {
-  //     currentValue--
-  //     setCountdown(currentValue)
+    const interval = setInterval(() => {
+      currentValue--
+      setTimer(currentValue)
 
-  //     if (currentValue === 0) clearInterval(interval)
-  //   }, 1000)
-  // }
+      if (currentValue === 0) clearInterval(interval)
+    }, 1000)
+  }
 
-  return { timer }
+  return { timer, startTimer }
 }
 
 export default useGameTimer
