@@ -1,4 +1,5 @@
 import { useContext, useRef } from 'react'
+import useNavigation from '@hooks/useNavigation'
 import FinishContext from '@contexts/GameController/Finish'
 
 const GAME_END_PAUSE = 2000
@@ -14,7 +15,9 @@ const useGameFinish = (): ReturnValue => {
   const { isFinishedState, isStartedState } = useContext(FinishContext)
   const [isFinished, setIsFinished] = isFinishedState
   const [isStarted, setIsStarted] = isStartedState
+
   const finishTimerRef = useRef<Maybe<ReturnType<typeof setTimeout>>>(null)
+  const navigation = useNavigation()
 
   const finishGame = () => {
     setIsFinished(true)
@@ -27,8 +30,8 @@ const useGameFinish = (): ReturnValue => {
 
   const startFinishTimer = () => {
     finishTimerRef.current = setTimeout(() => {
-      console.log('navigate somewhere')
       clearTimeout(finishTimerRef.current!)
+      navigation.push('PostGame')
     }, GAME_END_PAUSE)
   }
 
