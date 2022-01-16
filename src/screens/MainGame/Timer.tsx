@@ -5,7 +5,6 @@ import InfoWrapper from './InfoWrapper'
 
 const Text = styled.Text`
   font-size: 30px;
-  margin-bottom: 60px;
 `
 
 const Timer: React.VFC = () => {
