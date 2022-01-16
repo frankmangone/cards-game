@@ -6,6 +6,7 @@ import Show from '@components/Show'
 import FakeCardStack from './FakeCardStack'
 import SwipeableCard from './SwipeableCard'
 import RemainingCards from './RemainingCards'
+import Timer from './Timer'
 import GameGuessIcon from './GameGuessIcon'
 import GamePassIcon from './GamePassIcon'
 
@@ -35,6 +36,7 @@ const GameInterface: React.VFC = () => {
       <FakeCardStack remainingCards={remainingCards} />
       <GameGuessIcon />
       <GamePassIcon />
+      <Timer />
     </ScreenWrapper>
   )
 }
