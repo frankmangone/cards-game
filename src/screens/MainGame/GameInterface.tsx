@@ -22,6 +22,7 @@ const ScreenWrapper = styled.View`
 const CardsWrapper = styled.View`
   flex-grow: 1;
   justify-content: center;
+  align-items: center;
 `
 
 const Done = styled.Text`
@@ -49,8 +50,8 @@ const GameInterface: React.VFC = () => {
         <Show when={remainingCards > 0} fallback={<Done>Done!</Done>}>
           <SwipeableCard />
         </Show>
+        <FakeCardStack remainingCards={remainingCards} />
       </CardsWrapper>
-      <FakeCardStack remainingCards={remainingCards} />
       <GameGuessIcon />
       <GamePassIcon />
     </ScreenWrapper>
