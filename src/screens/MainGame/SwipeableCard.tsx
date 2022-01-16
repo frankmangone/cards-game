@@ -1,7 +1,7 @@
 import { Animated } from 'react-native'
 import styled from 'styled-components/native'
 import useSwipeableCard from '@hooks/useSwipeableCard'
-import useGameController from '@hooks/useGameController'
+import useGameCards from '@hooks/useGameCards'
 
 // TODO: Determine width by using viewport width
 const Wrapper = styled(Animated.View)`
@@ -19,7 +19,7 @@ const Text = styled.Text`
 `
 
 const SwipeableCard: React.VFC = () => {
-  const { currentCard: cardText, passCard: onPass, guessCard: onGuess } = useGameController()
+  const { currentCard: cardText, passCard: onPass, guessCard: onGuess } = useGameCards()
   const { leftPosition, rotation, panHandlers } = useSwipeableCard({
     onPass,
     onGuess,

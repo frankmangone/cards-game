@@ -1,7 +1,8 @@
 import { useContext } from 'react'
 import { Dimensions } from 'react-native'
-import { GameControllerContext } from '@contexts/GameController'
+import CardsContext from '@contexts/GameController/Cards'
 import useGameCountdown from '@hooks/useGameCountdown'
+import useGameFinish from '@hooks/useGameFinish'
 import shuffle from '@lib/utils/array/shuffle'
 import type { Animated } from 'react-native'
 
@@ -17,9 +18,10 @@ interface ReturnValue {
   SWIPE_THRESHOLD: number
 }
 
-const useGameController = (): ReturnValue => {
-  const { dragValue, unguessedState, guessedState } = useContext(GameControllerContext)
+const useGameCards = (): ReturnValue => {
+  const { dragValue, unguessedState, guessedState } = useContext(CardsContext)
   const { startCountdown } = useGameCountdown()
+  const { startGame: resetFinishedState } = useGameFinish()
 
   const { width: WIDTH } = Dimensions.get('window')
   const SWIPE_THRESHOLD = WIDTH * 0.4
@@ -71,10 +73,10 @@ const useGameController = (): ReturnValue => {
    *
    * Performs all actions that need to happen upon game start
    */
-  // eslint-disable-next-line
   const startGame = () => {
     shuffleCards()
     startCountdown()
+    resetFinishedState()
   }
 
   const shuffleCards = () => {
@@ -95,4 +97,4 @@ const useGameController = (): ReturnValue => {
   }
 }
 
-export default useGameController
+export default useGameCards

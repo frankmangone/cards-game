@@ -1,9 +1,13 @@
+import { useEffect } from 'react'
 import styled from 'styled-components/native'
-import useGameController from '@hooks/useGameController'
+import useGameCards from '@hooks/useGameCards'
+import useGameTimer from '@hooks/useGameTimer'
+import useGameFinish from '@hooks/useGameFinish'
 import Show from '@components/Show'
 import FakeCardStack from './FakeCardStack'
 import SwipeableCard from './SwipeableCard'
 import RemainingCards from './RemainingCards'
+import Timer from './Timer'
 import GameGuessIcon from './GameGuessIcon'
 import GamePassIcon from './GamePassIcon'
 
@@ -19,7 +23,14 @@ const Done = styled.Text`
 `
 
 const GameInterface: React.VFC = () => {
-  const { remainingCards } = useGameController()
+  const { remainingCards } = useGameCards()
+  const { startTimer } = useGameTimer()
+  const { isStarted } = useGameFinish()
+
+  useEffect(() => {
+    if (!isStarted) return
+    startTimer()
+  }, [])
 
   return (
     <ScreenWrapper>
@@ -30,6 +41,7 @@ const GameInterface: React.VFC = () => {
       <FakeCardStack remainingCards={remainingCards} />
       <GameGuessIcon />
       <GamePassIcon />
+      <Timer />
     </ScreenWrapper>
   )
 }
