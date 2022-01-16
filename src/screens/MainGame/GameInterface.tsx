@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import styled from 'styled-components/native'
 import useGameCards from '@hooks/useGameCards'
+import useGameTimer from '@hooks/useGameTimer'
 import Show from '@components/Show'
 import FakeCardStack from './FakeCardStack'
 import SwipeableCard from './SwipeableCard'
@@ -20,6 +22,9 @@ const Done = styled.Text`
 
 const GameInterface: React.VFC = () => {
   const { remainingCards } = useGameCards()
+  const { startTimer } = useGameTimer()
+
+  useEffect(startTimer, [])
 
   return (
     <ScreenWrapper>
