@@ -23,14 +23,13 @@ const useGameTimer = (): ReturnValue => {
   }
 
   const startTimer = () => {
-    let currentValue = 10
-    setTimer(10)
+    setTimer(60)
 
     intervalRef.current = setInterval(() => {
-      currentValue--
-      setTimer(currentValue)
+      const newValue = timer - 1
+      setTimer(newValue)
 
-      if (currentValue !== 0) return
+      if (newValue !== 0) return
 
       finishGame()
       clearTimerInterval()
