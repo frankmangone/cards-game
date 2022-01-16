@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { GameCountdownContext } from '@contexts/GameController'
+import CoundownContext from '@contexts/GameController/Countdown'
 
 interface ReturnValue {
   countdown: Countdown
@@ -7,7 +7,7 @@ interface ReturnValue {
 }
 
 const useGameCountdown = (): ReturnValue => {
-  const [countdown, setCountdown] = useContext(GameCountdownContext)
+  const [countdown, setCountdown] = useContext(CoundownContext)
 
   const startCountdown = () => {
     let currentValue = 3

@@ -1,5 +1,6 @@
 import { createContext, useRef, useState } from 'react'
 import { Animated } from 'react-native'
+import CountdownContext from './Countdown'
 
 interface GameControllerContextValues {
   dragValue: Animated.Value
@@ -7,15 +8,11 @@ interface GameControllerContextValues {
   guessedState: ReactState<string[]>
 }
 
-type GameCountdownContextValues = ReactState<Countdown>
-
 const gameControllerDefaultValue: GameControllerContextValues = {
   dragValue: new Animated.Value(0),
   unguessedState: [[], () => {}],
   guessedState: [[], () => {}],
 }
-
-const gameCountdownDefaultValue: GameCountdownContextValues = [0, () => {}]
 
 /**
  * Contexts
@@ -23,8 +20,6 @@ const gameCountdownDefaultValue: GameCountdownContextValues = [0, () => {}]
 export const GameControllerContext = createContext<GameControllerContextValues>(
   gameControllerDefaultValue
 )
-export const GameCountdownContext =
-  createContext<GameCountdownContextValues>(gameCountdownDefaultValue)
 
 /**
  * GameControllerProvider
@@ -37,6 +32,7 @@ export const GameControllerProvider: React.FC = (props) => {
   const { children } = props
 
   const countdownState = useState<Countdown>(0)
+
   const unguessedState = useState<string[]>([])
   const guessedState = useState<string[]>([])
   const dragValueRef = useRef(new Animated.Value(0))
@@ -49,9 +45,7 @@ export const GameControllerProvider: React.FC = (props) => {
 
   return (
     <GameControllerContext.Provider value={controller}>
-      <GameCountdownContext.Provider value={countdownState}>
-        {children}
-      </GameCountdownContext.Provider>
+      <CountdownContext.Provider value={countdownState}>{children}</CountdownContext.Provider>
     </GameControllerContext.Provider>
   )
 }
