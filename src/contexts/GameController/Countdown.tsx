@@ -2,9 +2,9 @@ import { createContext, useState } from 'react'
 
 type CountdownContextValues = ReactState<Countdown>
 
-const countdownDefaultValue: CountdownContextValues = [0, () => {}]
+const defaultValue: CountdownContextValues = [0, () => {}]
 
-const CountdownContext = createContext<CountdownContextValues>(countdownDefaultValue)
+const CountdownContext = createContext<CountdownContextValues>(defaultValue)
 
 export default CountdownContext
 

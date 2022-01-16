@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Animated, Easing, PanResponder } from 'react-native'
-import useGameController from '@hooks/useGameController'
+import useGameCards from '@hooks/useGameCards'
 import type { GestureResponderHandlers } from 'react-native'
 
 interface HookOptions {
@@ -19,7 +19,7 @@ const ANIMATION_DURATION = 200 // ms
 const useSwipeableCard = (options: HookOptions): ReturnValue => {
   const { onPass, onGuess } = options
 
-  const { dragValue, WIDTH, SWIPE_THRESHOLD } = useGameController()
+  const { dragValue, WIDTH, SWIPE_THRESHOLD } = useGameCards()
   const CARD_BOUNDARY = WIDTH * 2
 
   const [action, setAction] = useState<Maybe<'guess' | 'pass'>>(null)

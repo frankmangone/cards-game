@@ -4,12 +4,12 @@ import Show from '@components/Show'
 import Countdown from './Countdown'
 import GameInterface from './GameInterface'
 import { useIsFocused } from '@react-navigation/native'
-import useGameController from '@hooks/useGameController'
+import useGameCards from '@hooks/useGameCards'
 import useGameCountdown from '@hooks/useGameCountdown'
 
 const MainGame: React.VFC = () => {
   const isFocused = useIsFocused()
-  const { startGame } = useGameController()
+  const { startGame } = useGameCards()
   const { countdown } = useGameCountdown()
 
   useEffect(() => {

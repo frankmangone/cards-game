@@ -4,11 +4,11 @@ import Separator from '@components/Separator'
 import TextInput from '@components/TextInput'
 import MainLayout from '@components/MainLayout'
 import useNavigation from '@hooks/useNavigation'
-import useGameController from '@hooks/useGameController'
+import useGameCards from '@hooks/useGameCards'
 
 const CardInputScreen: React.VFC = () => {
   const navigation = useNavigation()
-  const { remainingCards: cardNumber, addCard } = useGameController()
+  const { remainingCards: cardNumber, addCard } = useGameCards()
   const [newCard, setNewCard] = useState('')
 
   const handleReady = () => {

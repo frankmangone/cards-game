@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import useGameController from '@hooks/useGameController'
+import useGameCards from '@hooks/useGameCards'
 import Show from '@components/Show'
 import FakeCardStack from './FakeCardStack'
 import SwipeableCard from './SwipeableCard'
@@ -19,7 +19,7 @@ const Done = styled.Text`
 `
 
 const GameInterface: React.VFC = () => {
-  const { remainingCards } = useGameController()
+  const { remainingCards } = useGameCards()
 
   return (
     <ScreenWrapper>

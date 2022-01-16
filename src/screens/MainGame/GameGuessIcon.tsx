@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 import { Animated } from 'react-native'
 import { SvgXml } from 'react-native-svg'
 import { useTheme } from '@contexts/Theme'
-import useGameController from '@hooks/useGameController'
+import useGameCards from '@hooks/useGameCards'
 import { xml } from 'lit-xml'
 
 interface IconProps {
@@ -20,7 +20,7 @@ const Wrapper = styled(Animated.View)<IconProps>`
 const GameGuessIcon: React.VFC<Partial<IconProps>> = (props) => {
   const { size = 60 } = props
   const { getColor } = useTheme()
-  const { dragValue, WIDTH, SWIPE_THRESHOLD } = useGameController()
+  const { dragValue, WIDTH, SWIPE_THRESHOLD } = useGameCards()
 
   const white = getColor('white')
 

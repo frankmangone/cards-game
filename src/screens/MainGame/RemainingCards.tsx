@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import useGameController from '@hooks/useGameController'
+import useGameCards from '@hooks/useGameCards'
 
 const Text = styled.Text`
   font-size: 30px;
@@ -7,7 +7,7 @@ const Text = styled.Text`
 `
 
 const CardsLeft: React.VFC = () => {
-  const { remainingCards } = useGameController()
+  const { remainingCards } = useGameCards()
   return <Text>Cards remaining: {remainingCards}</Text>
 }
 

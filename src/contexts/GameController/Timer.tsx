@@ -2,9 +2,9 @@ import { createContext, useState } from 'react'
 
 type TimerContextValues = ReactState<Timer>
 
-const timerDefaultValue: TimerContextValues = [60, () => {}]
+const defaultValue: TimerContextValues = [60, () => {}]
 
-const TimerContext = createContext<TimerContextValues>(timerDefaultValue)
+const TimerContext = createContext<TimerContextValues>(defaultValue)
 
 export default TimerContext
 
