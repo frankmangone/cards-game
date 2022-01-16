@@ -1,7 +1,7 @@
 import { createContext, useRef, useState } from 'react'
 import { Animated } from 'react-native'
-import CountdownContext from './Countdown'
-import TimerContext from './Timer'
+import { CountdownProvider } from './Countdown'
+import { TimerProvider } from './Timer'
 
 interface GameControllerContextValues {
   dragValue: Animated.Value
@@ -32,7 +32,6 @@ export const GameControllerContext = createContext<GameControllerContextValues>(
 export const GameControllerProvider: React.FC = (props) => {
   const { children } = props
 
-  const countdownState = useState<Countdown>(0)
   const timerState = useState<Timer>(60)
 
   const unguessedState = useState<string[]>([])
@@ -47,9 +46,9 @@ export const GameControllerProvider: React.FC = (props) => {
 
   return (
     <GameControllerContext.Provider value={controller}>
-      <CountdownContext.Provider value={countdownState}>
-        <TimerContext.Provider value={timerState}>{children}</TimerContext.Provider>
-      </CountdownContext.Provider>
+      <CountdownProvider>
+        <TimerProvider>{children}</TimerProvider>
+      </CountdownProvider>
     </GameControllerContext.Provider>
   )
 }
