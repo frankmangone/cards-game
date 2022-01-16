@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import styled from 'styled-components/native'
 import useGameCards from '@hooks/useGameCards'
-import useGameCountdown from '@hooks/useGameCountdown'
 import useGameTimer from '@hooks/useGameTimer'
 import useGameFinish from '@hooks/useGameFinish'
 import Show from '@components/Show'
