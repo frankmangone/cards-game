@@ -29,6 +29,8 @@ const useGameTimer = (): ReturnValue => {
     }, 1000)
   }
 
+  // TODO: Cleanup when out of focus
+
   useEffect(() => {
     return () => {
       if (!intervalRef.current) return
